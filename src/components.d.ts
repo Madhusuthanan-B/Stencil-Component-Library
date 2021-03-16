@@ -9,6 +9,10 @@ export namespace Components {
     interface CoreBtn {
         "type": string;
     }
+    interface CoreCard {
+        "header": string;
+        "subheader": string;
+    }
     interface CoreSpinner {
         "color": string;
         "type": string;
@@ -21,6 +25,12 @@ declare global {
         prototype: HTMLCoreBtnElement;
         new (): HTMLCoreBtnElement;
     };
+    interface HTMLCoreCardElement extends Components.CoreCard, HTMLStencilElement {
+    }
+    var HTMLCoreCardElement: {
+        prototype: HTMLCoreCardElement;
+        new (): HTMLCoreCardElement;
+    };
     interface HTMLCoreSpinnerElement extends Components.CoreSpinner, HTMLStencilElement {
     }
     var HTMLCoreSpinnerElement: {
@@ -29,6 +39,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "core-btn": HTMLCoreBtnElement;
+        "core-card": HTMLCoreCardElement;
         "core-spinner": HTMLCoreSpinnerElement;
     }
 }
@@ -36,12 +47,17 @@ declare namespace LocalJSX {
     interface CoreBtn {
         "type"?: string;
     }
+    interface CoreCard {
+        "header"?: string;
+        "subheader"?: string;
+    }
     interface CoreSpinner {
         "color"?: string;
         "type"?: string;
     }
     interface IntrinsicElements {
         "core-btn": CoreBtn;
+        "core-card": CoreCard;
         "core-spinner": CoreSpinner;
     }
 }
@@ -50,6 +66,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "core-btn": LocalJSX.CoreBtn & JSXBase.HTMLAttributes<HTMLCoreBtnElement>;
+            "core-card": LocalJSX.CoreCard & JSXBase.HTMLAttributes<HTMLCoreCardElement>;
             "core-spinner": LocalJSX.CoreSpinner & JSXBase.HTMLAttributes<HTMLCoreSpinnerElement>;
         }
     }
