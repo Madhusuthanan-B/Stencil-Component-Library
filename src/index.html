@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
 
-    <script type="module" src="/build/core-library.esm.js"></script>
-    <script nomodule src="/build/core-library.js"></script>
-  </head>
-  <body>
-    <core-btn></core-btn>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
+  <style>
+    .button-demo {
+      display: flex;
+      justify-content: space-evenly;
+      width: 40%;
+    }
+  </style>
+  <script type="module" src="/build/core-library.esm.js"></script>
+  <script nomodule src="/build/core-library.js"></script>
+</head>
+
+<body>
+  <section class="container demo">
+    <section class="row">
+      <h2>Demo</h2>
+      <section class="button-demo">
+        <core-btn type="primary">Primary</core-btn>
+        <core-btn type="secondary">Secondary</core-btn>
+        <core-btn type="error">Error</core-btn>
+        <core-btn type="warn">Warn</core-btn>
+        <core-btn type="info">Info</core-btn>
+      </section>
+    </section>
+  </section>
+</body>
+
 </html>
