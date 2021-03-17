@@ -1,4 +1,4 @@
-import { Component, h, Prop, Watch } from '@stencil/core';
+import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { INavBarOptions } from './nav-bar.model';
 
 @Component({
@@ -10,7 +10,7 @@ export class NavBarComponent {
     @Prop() header: string;
     @Prop() options: INavBarOptions[] | string;
 
-    private _navBarOptions: INavBarOptions[];
+    @State() private _navBarOptions: INavBarOptions[];
 
     @Watch('options')
     optionsWatcher(newValue: INavBarOptions[] | string) {
@@ -26,25 +26,40 @@ export class NavBarComponent {
         this.optionsWatcher(this.options);
     }
 
-    render() {
-        const navBarOptions = this._navBarOptions ? this._navBarOptions.map((option, index) => {
-            const activeClass = index === 0 ? "active" : '';
-            const disabledClass = option.isDisabled ? "disabled" : "";
-            return <a class={"nav-item nav-link " + activeClass + " " + disabledClass} href="#">{option.name}</a>;
-        }) : null;
+    onNavItemSelected(selectedItem: INavBarOptions) {
+        const currentOptions = [...this._navBarOptions];
+        currentOptions.forEach((option) => option.isActive = false);
+        const selectedOption = currentOptions.find((option) => option.value === selectedItem.value);
+        selectedOption.isActive = true;
+        this._navBarOptions = [...currentOptions];
+    }
 
-        return <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">{this.header}</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        {navBarOptions}
-                    </div>
+    render() {
+        let navBarOptions;
+        if (this._navBarOptions.some((option) => option.isActive)) {
+            navBarOptions = this._navBarOptions ? this._navBarOptions.map((option) => {
+                const activeClass = option.isActive ? "active" : '';
+                const disabledClass = option.isDisabled ? "disabled" : "";
+                return <a class={"nav-item nav-link " + activeClass + " " + disabledClass} href="javascript:void(0)" onClick={this.onNavItemSelected.bind(this, option)}>{option.name}</a>;
+            }) : null;
+        } else {
+            navBarOptions = this._navBarOptions ? this._navBarOptions.map((option, index) => {
+                const activeClass = index === 0 ? "active" : '';
+                const disabledClass = option.isDisabled ? "disabled" : "";
+                return <a class={"nav-item nav-link " + activeClass + " " + disabledClass} href="javascript:void(0)" onClick={this.onNavItemSelected.bind(this, option)}>{option.name}</a>;
+            }) : null;
+        }
+
+        return <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">{this.header}</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    {navBarOptions}
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>;
     }
 }
