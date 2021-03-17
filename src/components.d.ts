@@ -17,6 +17,7 @@ export namespace Components {
     interface CoreDropDown {
         "color": string;
         "componentId": string;
+        "label": string;
         "options": IDropDownOption[] | string;
         "size": string;
     }
@@ -68,6 +69,7 @@ declare namespace LocalJSX {
     interface CoreDropDown {
         "color"?: string;
         "componentId"?: string;
+        "label"?: string;
         "options"?: IDropDownOption[] | string;
         "size"?: string;
     }
