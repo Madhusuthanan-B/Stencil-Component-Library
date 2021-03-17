@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { IDropDownOption } from "./components/drop-down/drop-down.model";
 export namespace Components {
     interface CoreBtn {
         "color": string;
@@ -15,7 +16,8 @@ export namespace Components {
     }
     interface CoreDropDown {
         "color": string;
-        "id": string;
+        "componentId": string;
+        "options": IDropDownOption[] | string;
         "size": string;
     }
     interface CoreSpinner {
@@ -65,7 +67,8 @@ declare namespace LocalJSX {
     }
     interface CoreDropDown {
         "color"?: string;
-        "id"?: string;
+        "componentId"?: string;
+        "options"?: IDropDownOption[] | string;
         "size"?: string;
     }
     interface CoreSpinner {

@@ -46,9 +46,16 @@
       <section class="demo-section">
         <core-card header="Card header" subheader="Sub Header">
           <div class="demo-section">
-            <core-drop-down color="primary" size="small">Small</core-drop-down>
-            <core-drop-down>Default</core-drop-down>
-            <core-drop-down size="large" color="info">Large</core-drop-down>
+            <core-drop-down color="primary" size="small"
+              options='[{"name": "Option 1", "value": "Option 1 value"}, {"name": "Option 2", "value": "Option 2 value"}]'>
+              Small</core-drop-down>
+            <core-drop-down
+              options='[{"name": "Option 1", "value": "Option 1 value"}, {"name": "Option 2", "value": "Option 2 value"}]'>
+              Default</core-drop-down>
+            <core-drop-down size="large" color="info"
+              options='[{"name": "Option 1", "value": "Option 1 value"}, {"name": "Option 2", "value": "Option 2 value"}]'>
+              Large
+            </core-drop-down>
           </div>
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, quam enim! Vel neque esse qui beatae
             aliquam, praesentium non nobis odit velit veniam error quo laboriosam enim harum. Laborum, error!
