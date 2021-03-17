@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IDropDownOption } from "./components/drop-down/drop-down.model";
+import { IListGroupOptions } from "./components/list-group/list-group.model";
 import { INavBarOptions } from "./components/nav-bar/nav-bar.model";
 export namespace Components {
     interface CoreBtn {
@@ -23,6 +24,9 @@ export namespace Components {
         "label": string;
         "options": IDropDownOption[] | string;
         "size": string;
+    }
+    interface CoreListGroup {
+        "options": IListGroupOptions[] | string;
     }
     interface CoreNavBar {
         "header": string;
@@ -52,6 +56,12 @@ declare global {
         prototype: HTMLCoreDropDownElement;
         new (): HTMLCoreDropDownElement;
     };
+    interface HTMLCoreListGroupElement extends Components.CoreListGroup, HTMLStencilElement {
+    }
+    var HTMLCoreListGroupElement: {
+        prototype: HTMLCoreListGroupElement;
+        new (): HTMLCoreListGroupElement;
+    };
     interface HTMLCoreNavBarElement extends Components.CoreNavBar, HTMLStencilElement {
     }
     var HTMLCoreNavBarElement: {
@@ -68,6 +78,7 @@ declare global {
         "core-btn": HTMLCoreBtnElement;
         "core-card": HTMLCoreCardElement;
         "core-drop-down": HTMLCoreDropDownElement;
+        "core-list-group": HTMLCoreListGroupElement;
         "core-nav-bar": HTMLCoreNavBarElement;
         "core-spinner": HTMLCoreSpinnerElement;
     }
@@ -90,6 +101,9 @@ declare namespace LocalJSX {
         "options"?: IDropDownOption[] | string;
         "size"?: string;
     }
+    interface CoreListGroup {
+        "options"?: IListGroupOptions[] | string;
+    }
     interface CoreNavBar {
         "header"?: string;
         "options"?: INavBarOptions[] | string;
@@ -102,6 +116,7 @@ declare namespace LocalJSX {
         "core-btn": CoreBtn;
         "core-card": CoreCard;
         "core-drop-down": CoreDropDown;
+        "core-list-group": CoreListGroup;
         "core-nav-bar": CoreNavBar;
         "core-spinner": CoreSpinner;
     }
@@ -113,6 +128,7 @@ declare module "@stencil/core" {
             "core-btn": LocalJSX.CoreBtn & JSXBase.HTMLAttributes<HTMLCoreBtnElement>;
             "core-card": LocalJSX.CoreCard & JSXBase.HTMLAttributes<HTMLCoreCardElement>;
             "core-drop-down": LocalJSX.CoreDropDown & JSXBase.HTMLAttributes<HTMLCoreDropDownElement>;
+            "core-list-group": LocalJSX.CoreListGroup & JSXBase.HTMLAttributes<HTMLCoreListGroupElement>;
             "core-nav-bar": LocalJSX.CoreNavBar & JSXBase.HTMLAttributes<HTMLCoreNavBarElement>;
             "core-spinner": LocalJSX.CoreSpinner & JSXBase.HTMLAttributes<HTMLCoreSpinnerElement>;
         }
