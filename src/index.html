@@ -10,7 +10,7 @@
       margin: 3rem;
       display: flex;
       justify-content: space-evenly;
-      width: 40%;
+      width: 80%;
     }
   </style>
   <script type="module" src="/build/core-library.esm.js"></script>
@@ -24,7 +24,7 @@
       <section class="demo-section">
         <core-btn color="primary">Primary</core-btn>
         <core-btn color="secondary">Secondary</core-btn>
-        <core-btn color="error">Error</core-btn>
+        <core-btn color="danger">Error</core-btn>
         <core-btn color="warn">Warn</core-btn>
         <core-btn color="info">Info</core-btn>
       </section>
@@ -32,28 +32,30 @@
         <core-spinner></core-spinner>
         <core-spinner type="border" color="primary"></core-spinner>
         <core-spinner type="border" color="secondary"></core-spinner>
-        <core-spinner type="border" color="error"></core-spinner>
+        <core-spinner type="border" color="danger"></core-spinner>
         <core-spinner type="border" color="warn"></core-spinner>
         <core-spinner type="border" color="info"></core-spinner>
       </section>
       <section class="demo-section">
         <core-spinner type="grow" color="primary"></core-spinner>
         <core-spinner type="grow" color="secondary"></core-spinner>
-        <core-spinner type="grow" color="error"></core-spinner>
+        <core-spinner type="grow" color="danger"></core-spinner>
         <core-spinner type="grow" color="warn"></core-spinner>
         <core-spinner type="grow" color="info"></core-spinner>
       </section>
       <section class="demo-section">
-        <core-card header="Card header">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, quam enim! Vel neque esse qui beatae
-            aliquam, praesentium non nobis odit velit veniam error quo laboriosam enim harum. Laborum, error!
-            Quae debitis quasi illum, optio eius at eaque molestias quo quam fugit reiciendis a eum adipisci officiis
-            voluptate nobis atque magnam suscipit consectetur dolorem. Porro aspernatur sit nihil quasi doloremque.
-            Molestiae, itaque aspernatur. Et nam velit incidunt, debitis eos illum ipsum, enim illo eum rem asperiores.
-            Aliquid provident maiores deserunt facilis, delectus, suscipit dolore, impedit sit nemo distinctio porro
-            enim!</p>
-        </core-card>
         <core-card header="Card header" subheader="Sub Header">
+          <div class="demo-section">
+            <core-drop-down label="Small" color="primary" size="small"
+              options='[{"name": "Small option 1", "value": "Small option 1 value"}, {"name": "Small option 2", "value": "Small option 2 value"}]'>
+            </core-drop-down>
+            <core-drop-down label="Default"
+              options='[{"name": "Option 1", "value": "Option 1 value"}, {"name": "Option 2", "value": "Option 2 value"}, {"name": "Option 3", "value": "Option 3 value"}]'>
+              Default</core-drop-down>
+            <core-drop-down  label="Large" size="large" color="info"
+              options='[{"name": "Option 1", "value": "Option 1 value"}]'>
+            </core-drop-down>
+          </div>
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, quam enim! Vel neque esse qui beatae
             aliquam, praesentium non nobis odit velit veniam error quo laboriosam enim harum. Laborum, error!
             Quae debitis quasi illum, optio eius at eaque molestias quo quam fugit reiciendis a eum adipisci officiis
