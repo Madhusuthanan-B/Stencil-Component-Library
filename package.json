@@ -1,5 +1,5 @@
 {
-  "name": "core-library",
+  "name": "@foo/core-library",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
@@ -19,7 +19,8 @@
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "yalc": "npm run build && yalc publish"
   },
   "dependencies": {
     "@stencil/core": "^2.0.1",
@@ -27,6 +28,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@stencil/sass": "^1.4.1"
+    "@stencil/sass": "^1.4.1",
+    "yalc": "^1.0.0-pre.50"
   }
 }
