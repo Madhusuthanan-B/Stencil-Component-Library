@@ -70,6 +70,7 @@ declare namespace LocalJSX {
         "color"?: string;
         "componentId"?: string;
         "label"?: string;
+        "onCoreOptionSelected"?: (event: CustomEvent<IDropDownOption>) => void;
         "options"?: IDropDownOption[] | string;
         "size"?: string;
     }

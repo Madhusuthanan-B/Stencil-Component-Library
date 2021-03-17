@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Prop, State, Watch, Event, EventEmitter } from '@stencil/core';
 import { colorClassMapper, sizeClassMapper } from '../../utils/utils';
 import { IDropDownOption } from './drop-down.model';
 
@@ -9,18 +9,18 @@ import { IDropDownOption } from './drop-down.model';
 })
 export class DropDownComponent {
     @Prop() componentId: string;
-    @Prop() label: string;
+    @Prop({ mutable: true, reflect: true }) label: string;
     @Prop() color: string;
     @Prop() size = '';
     @Prop() options: IDropDownOption[] | string;
 
     @State() isOptionsOpen = false;
-    @State() displayLabel: string;
+
+    @Event({ bubbles: true, composed: true }) coreOptionSelected: EventEmitter<IDropDownOption>;
 
     private _btnClass: string;
     private _dropDownOptions: IDropDownOption[];
     private _dropDownToggleClass = '';
-    private _node: Element;
 
     @Watch('options')
     optionsWatcher(newValue: IDropDownOption[] | string) {
@@ -34,7 +34,6 @@ export class DropDownComponent {
 
     componentWillLoad() {
         this._btnClass = `btn btn-${colorClassMapper[this.color]} btn-${sizeClassMapper[this.size]} dropdown-toggle`;
-        this.displayLabel = this.label;
         this.optionsWatcher(this.options);
     }
 
@@ -43,11 +42,12 @@ export class DropDownComponent {
         this._dropDownToggleClass = this.isOptionsOpen ? 'show' : '';
     }
 
-    handleClick = (e) => {
-        if (this._node.contains(e.target)) {
-            return;
-        }
-        this.closeDropDownOptions();
+    handleClick = () => {
+        // Auto close drop down on clicking outside. Bit buggy
+        // if (this._node.contains(e.target)) {
+        //     return;
+        // }
+        // this.closeDropDownOptions();
     }
 
     closeDropDownOptions() {
@@ -59,7 +59,8 @@ export class DropDownComponent {
     }
 
     selectOption(selected) {
-        this.displayLabel = selected.name;
+        this.label = selected.name;
+        this.coreOptionSelected.emit(selected as IDropDownOption);
         this.closeDropDownOptions();
     }
 
@@ -68,9 +69,9 @@ export class DropDownComponent {
             return <a class="dropdown-item" data-value={option.value} href="javascript:void(0)" onClick={this.selectOption.bind(this, option)}>{option.name}</a>
         }) : null;
 
-        return <div class={"dropdown " + this._dropDownToggleClass} ref={divEl => this._node = divEl}>
+        return <div class={"dropdown " + this._dropDownToggleClass}>
             <button class={this._btnClass} type="button" id={this.componentId} aria-haspopup="true" aria-expanded="false" onClick={this.toggleDropDownOptions.bind(this)}>
-                {this.displayLabel}
+                {this.label}
             </button>
             <div class={"dropdown-menu " + this._dropDownToggleClass} aria-labelledby="dropdownMenuButton">
                 {dropDownOptions}

@@ -52,7 +52,7 @@
             <core-drop-down label="Default"
               options='[{"name": "Option 1", "value": "Option 1 value"}, {"name": "Option 2", "value": "Option 2 value"}, {"name": "Option 3", "value": "Option 3 value"}]'>
               Default</core-drop-down>
-            <core-drop-down  label="Large" size="large" color="info"
+            <core-drop-down label="Large" size="large" color="info"
               options='[{"name": "Option 1", "value": "Option 1 value"}]'>
             </core-drop-down>
           </div>
@@ -68,5 +68,13 @@
     </section>
   </section>
 </body>
+
+<script>
+  const firstDropDown = document.querySelector('core-drop-down');
+  console.log('listening to first drop down changes');
+  firstDropDown.addEventListener('coreOptionSelected', event => {
+    console.log('drop down event', event);
+  });
+</script>
 
 </html>
