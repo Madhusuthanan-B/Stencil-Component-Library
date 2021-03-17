@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IDropDownOption } from "./components/drop-down/drop-down.model";
+import { INavBarOptions } from "./components/nav-bar/nav-bar.model";
 export namespace Components {
     interface CoreBtn {
         "color": string;
@@ -24,6 +25,8 @@ export namespace Components {
         "size": string;
     }
     interface CoreNavBar {
+        "header": string;
+        "options": INavBarOptions[] | string;
     }
     interface CoreSpinner {
         "color": string;
@@ -88,6 +91,8 @@ declare namespace LocalJSX {
         "size"?: string;
     }
     interface CoreNavBar {
+        "header"?: string;
+        "options"?: INavBarOptions[] | string;
     }
     interface CoreSpinner {
         "color"?: string;
