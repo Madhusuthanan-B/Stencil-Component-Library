@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IDropDownOption } from "./components/drop-down/drop-down.model";
+import { INavBarOptions } from "./components/nav-bar/nav-bar.model";
 export namespace Components {
     interface CoreBtn {
         "color": string;
@@ -22,6 +23,10 @@ export namespace Components {
         "label": string;
         "options": IDropDownOption[] | string;
         "size": string;
+    }
+    interface CoreNavBar {
+        "header": string;
+        "options": INavBarOptions[] | string;
     }
     interface CoreSpinner {
         "color": string;
@@ -47,6 +52,12 @@ declare global {
         prototype: HTMLCoreDropDownElement;
         new (): HTMLCoreDropDownElement;
     };
+    interface HTMLCoreNavBarElement extends Components.CoreNavBar, HTMLStencilElement {
+    }
+    var HTMLCoreNavBarElement: {
+        prototype: HTMLCoreNavBarElement;
+        new (): HTMLCoreNavBarElement;
+    };
     interface HTMLCoreSpinnerElement extends Components.CoreSpinner, HTMLStencilElement {
     }
     var HTMLCoreSpinnerElement: {
@@ -57,6 +68,7 @@ declare global {
         "core-btn": HTMLCoreBtnElement;
         "core-card": HTMLCoreCardElement;
         "core-drop-down": HTMLCoreDropDownElement;
+        "core-nav-bar": HTMLCoreNavBarElement;
         "core-spinner": HTMLCoreSpinnerElement;
     }
 }
@@ -78,6 +90,10 @@ declare namespace LocalJSX {
         "options"?: IDropDownOption[] | string;
         "size"?: string;
     }
+    interface CoreNavBar {
+        "header"?: string;
+        "options"?: INavBarOptions[] | string;
+    }
     interface CoreSpinner {
         "color"?: string;
         "type"?: string;
@@ -86,6 +102,7 @@ declare namespace LocalJSX {
         "core-btn": CoreBtn;
         "core-card": CoreCard;
         "core-drop-down": CoreDropDown;
+        "core-nav-bar": CoreNavBar;
         "core-spinner": CoreSpinner;
     }
 }
@@ -96,6 +113,7 @@ declare module "@stencil/core" {
             "core-btn": LocalJSX.CoreBtn & JSXBase.HTMLAttributes<HTMLCoreBtnElement>;
             "core-card": LocalJSX.CoreCard & JSXBase.HTMLAttributes<HTMLCoreCardElement>;
             "core-drop-down": LocalJSX.CoreDropDown & JSXBase.HTMLAttributes<HTMLCoreDropDownElement>;
+            "core-nav-bar": LocalJSX.CoreNavBar & JSXBase.HTMLAttributes<HTMLCoreNavBarElement>;
             "core-spinner": LocalJSX.CoreSpinner & JSXBase.HTMLAttributes<HTMLCoreSpinnerElement>;
         }
     }
