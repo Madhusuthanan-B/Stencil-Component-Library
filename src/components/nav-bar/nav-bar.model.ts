@@ -1,4 +1,4 @@
-export interface INavBarOptions {
+export interface INavBarOption {
     name: string;
     value: string;
     isActive: boolean;

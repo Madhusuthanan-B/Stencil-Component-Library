@@ -1,5 +1,5 @@
-import { Component, h, Prop, State, Watch } from '@stencil/core';
-import { INavBarOptions } from './nav-bar.model';
+import { Component, h, Prop, State, Watch, Event, EventEmitter } from '@stencil/core';
+import { INavBarOption } from './nav-bar.model';
 
 @Component({
     tag: 'core-nav-bar',
@@ -8,12 +8,14 @@ import { INavBarOptions } from './nav-bar.model';
 })
 export class NavBarComponent {
     @Prop() header: string;
-    @Prop() options: INavBarOptions[] | string;
+    @Prop() options: INavBarOption[] | string;
 
-    @State() private _navBarOptions: INavBarOptions[];
+    @State() private _navBarOptions: INavBarOption[];
+
+    @Event({ bubbles: true, composed: true }) coreNavItemSelected: EventEmitter<INavBarOption>;
 
     @Watch('options')
-    optionsWatcher(newValue: INavBarOptions[] | string) {
+    optionsWatcher(newValue: INavBarOption[] | string) {
         if (typeof newValue === 'string') {
             this._navBarOptions = JSON.parse(newValue);
         }
@@ -26,12 +28,13 @@ export class NavBarComponent {
         this.optionsWatcher(this.options);
     }
 
-    onNavItemSelected(selectedItem: INavBarOptions) {
+    onNavItemSelected(selectedItem: INavBarOption) {
         const currentOptions = [...this._navBarOptions];
         currentOptions.forEach((option) => option.isActive = false);
         const selectedOption = currentOptions.find((option) => option.value === selectedItem.value);
         selectedOption.isActive = true;
         this._navBarOptions = [...currentOptions];
+        this.coreNavItemSelected.emit(selectedOption);
     }
 
     render() {

@@ -6,8 +6,8 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IDropDownOption } from "./components/drop-down/drop-down.model";
-import { IListGroupOptions } from "./components/list-group/list-group.model";
-import { INavBarOptions } from "./components/nav-bar/nav-bar.model";
+import { IListGroupOption } from "./components/list-group/list-group.model";
+import { INavBarOption } from "./components/nav-bar/nav-bar.model";
 export namespace Components {
     interface CoreBtn {
         "color": string;
@@ -26,11 +26,11 @@ export namespace Components {
         "size": string;
     }
     interface CoreListGroup {
-        "options": IListGroupOptions[] | string;
+        "options": IListGroupOption[] | string;
     }
     interface CoreNavBar {
         "header": string;
-        "options": INavBarOptions[] | string;
+        "options": INavBarOption[] | string;
     }
     interface CoreSpinner {
         "color": string;
@@ -102,11 +102,13 @@ declare namespace LocalJSX {
         "size"?: string;
     }
     interface CoreListGroup {
-        "options"?: IListGroupOptions[] | string;
+        "onCoreListOptionSelected"?: (event: CustomEvent<IListGroupOption>) => void;
+        "options"?: IListGroupOption[] | string;
     }
     interface CoreNavBar {
         "header"?: string;
-        "options"?: INavBarOptions[] | string;
+        "onCoreNavItemSelected"?: (event: CustomEvent<INavBarOption>) => void;
+        "options"?: INavBarOption[] | string;
     }
     interface CoreSpinner {
         "color"?: string;

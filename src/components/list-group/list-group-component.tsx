@@ -1,5 +1,5 @@
-import { Component, h, Prop, Watch, State } from '@stencil/core';
-import { IListGroupOptions } from './list-group.model';
+import { Component, h, Prop, Watch, State, Event, EventEmitter } from '@stencil/core';
+import { IListGroupOption } from './list-group.model';
 
 @Component({
     tag: 'core-list-group',
@@ -7,12 +7,14 @@ import { IListGroupOptions } from './list-group.model';
     shadow: true
 })
 export class ListGroupComponent {
-    @Prop() options: IListGroupOptions[] | string;
+    @Prop() options: IListGroupOption[] | string;
 
-    @State() private _listGroupOptions: IListGroupOptions[];
+    @State() private _listGroupOptions: IListGroupOption[];
+
+    @Event({ bubbles: true, composed: true }) coreListOptionSelected: EventEmitter<IListGroupOption>;
 
     @Watch('options')
-    optionsWatcher(newValue: IListGroupOptions[] | string) {
+    optionsWatcher(newValue: IListGroupOption[] | string) {
         this._listGroupOptions = (typeof newValue === 'string') ? JSON.parse(newValue) : newValue;
     }
 
@@ -20,12 +22,13 @@ export class ListGroupComponent {
         this.optionsWatcher(this.options);
     }
 
-    onItemSelected(selectedItem: IListGroupOptions) {
+    onItemSelected(selectedItem: IListGroupOption) {
         const currentOptions = [...this._listGroupOptions];
         currentOptions.forEach((option) => option.isActive = false);
         const selectedOption = currentOptions.find((option) => option.value === selectedItem.value);
         selectedOption.isActive = true;
         this._listGroupOptions = [...currentOptions];
+        this.coreListOptionSelected.emit(selectedOption as IListGroupOption);
     }
 
     render() {

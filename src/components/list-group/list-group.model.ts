@@ -1,4 +1,4 @@
-export interface IListGroupOptions {
+export interface IListGroupOption {
     name: string;
     value: string;
     isActive?: boolean;
