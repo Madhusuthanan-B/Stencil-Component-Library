@@ -10,6 +10,8 @@
 | Property | Attribute | Description | Type     | Default     |
 | -------- | --------- | ----------- | -------- | ----------- |
 | `color`  | `color`   |             | `string` | `undefined` |
+| `size`   | `size`    |             | `string` | `''`        |
+| `type`   | `type`    |             | `string` | `''`        |
 
 
 ----------------------------------------------
