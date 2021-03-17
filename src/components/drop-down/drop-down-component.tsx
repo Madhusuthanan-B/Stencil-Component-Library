@@ -21,6 +21,7 @@ export class DropDownComponent {
     private _dropDownOptions: IDropDownOption[];
     private _dropDownToggleClass = '';
     private _node: Element;
+
     @Watch('options')
     optionsWatcher(newValue: IDropDownOption[] | string) {
         if (typeof newValue === 'string') {
@@ -65,7 +66,7 @@ export class DropDownComponent {
     render() {
         const dropDownOptions = this._dropDownOptions ? this._dropDownOptions.map((option: IDropDownOption) => {
             return <a class="dropdown-item" data-value={option.value} href="javascript:void(0)" onClick={this.selectOption.bind(this, option)}>{option.name}</a>
-        }): null;
+        }) : null;
 
         return <div class={"dropdown " + this._dropDownToggleClass} ref={divEl => this._node = divEl}>
             <button class={this._btnClass} type="button" id={this.componentId} aria-haspopup="true" aria-expanded="false" onClick={this.toggleDropDownOptions.bind(this)}>
