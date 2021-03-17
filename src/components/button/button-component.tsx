@@ -1,4 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
+import { colorClassMapper } from '../../utils/utils';
 
 @Component({
     tag: 'core-btn',
@@ -8,16 +9,9 @@ import { Component, h, Prop } from '@stencil/core';
 export class ButtonComponent {
     @Prop() color: string;
     private btnClass: string;
-    private colorClassMapper = {
-        'primary': 'primary',
-        'secondary': 'secondary',
-        'error': 'danger',
-        'warn': 'warning',
-        'info': 'info'
-    };
 
     componentWillLoad() {
-        this.btnClass = `btn btn-${this.colorClassMapper[this.color]}`;
+        this.btnClass = `btn btn-${colorClassMapper[this.color]}`;
     }
 
     render() {

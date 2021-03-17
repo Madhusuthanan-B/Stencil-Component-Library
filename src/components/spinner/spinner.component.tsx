@@ -1,4 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
+import { colorClassMapper } from '../../utils/utils';
 
 @Component({
     tag: 'core-spinner',
@@ -11,16 +12,9 @@ export class SpinnerComponent {
     @Prop() color = '';
 
     private class: string;
-    private colorClassMapper = {
-        'primary': 'primary',
-        'secondary': 'secondary',
-        'error': 'danger',
-        'warn': 'warning',
-        'info': 'info'
-    };
 
     componentWillLoad() {
-        this.class = `spinner-${this.type} text-${this.colorClassMapper[this.color]}`;
+        this.class = `spinner-${this.type} text-${colorClassMapper[this.color]}`;
     }
 
     render() {

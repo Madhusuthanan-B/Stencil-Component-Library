@@ -13,6 +13,11 @@ export namespace Components {
         "header": string;
         "subheader": string;
     }
+    interface CoreDropDown {
+        "color": string;
+        "id": string;
+        "size": string;
+    }
     interface CoreSpinner {
         "color": string;
         "type": string;
@@ -31,6 +36,12 @@ declare global {
         prototype: HTMLCoreCardElement;
         new (): HTMLCoreCardElement;
     };
+    interface HTMLCoreDropDownElement extends Components.CoreDropDown, HTMLStencilElement {
+    }
+    var HTMLCoreDropDownElement: {
+        prototype: HTMLCoreDropDownElement;
+        new (): HTMLCoreDropDownElement;
+    };
     interface HTMLCoreSpinnerElement extends Components.CoreSpinner, HTMLStencilElement {
     }
     var HTMLCoreSpinnerElement: {
@@ -40,6 +51,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "core-btn": HTMLCoreBtnElement;
         "core-card": HTMLCoreCardElement;
+        "core-drop-down": HTMLCoreDropDownElement;
         "core-spinner": HTMLCoreSpinnerElement;
     }
 }
@@ -51,6 +63,11 @@ declare namespace LocalJSX {
         "header"?: string;
         "subheader"?: string;
     }
+    interface CoreDropDown {
+        "color"?: string;
+        "id"?: string;
+        "size"?: string;
+    }
     interface CoreSpinner {
         "color"?: string;
         "type"?: string;
@@ -58,6 +75,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "core-btn": CoreBtn;
         "core-card": CoreCard;
+        "core-drop-down": CoreDropDown;
         "core-spinner": CoreSpinner;
     }
 }
@@ -67,6 +85,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "core-btn": LocalJSX.CoreBtn & JSXBase.HTMLAttributes<HTMLCoreBtnElement>;
             "core-card": LocalJSX.CoreCard & JSXBase.HTMLAttributes<HTMLCoreCardElement>;
+            "core-drop-down": LocalJSX.CoreDropDown & JSXBase.HTMLAttributes<HTMLCoreDropDownElement>;
             "core-spinner": LocalJSX.CoreSpinner & JSXBase.HTMLAttributes<HTMLCoreSpinnerElement>;
         }
     }
