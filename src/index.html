@@ -46,6 +46,7 @@
       <section class="demo-section">
         <core-card header="Card header" subheader="Sub Header">
           <div class="demo-section">
+            <core-btn color="success" size="small" type="outline" onclick="loadMoreOptions()">Load More Options in first drop down</core-btn>
             <core-drop-down label="Small" color="primary" size="small"
               options='[{"name": "Small option 1", "value": "Small option 1 value"}, {"name": "Small option 2", "value": "Small option 2 value"}]'>
             </core-drop-down>
@@ -75,6 +76,11 @@
   firstDropDown.addEventListener('coreOptionSelected', event => {
     console.log('drop down event', event);
   });
+
+  function loadMoreOptions() {
+    const newOptions = '[{"name": "Small option 1", "value": "Small option 1 value"}, {"name": "Small option 2", "value": "Small option 2 value"}, {"name": "Small option 3", "value": "Small option 3 value"}]'
+    firstDropDown.setAttribute('options', newOptions)
+  }
 </script>
 
 </html>

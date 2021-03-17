@@ -9,6 +9,8 @@ import { IDropDownOption } from "./components/drop-down/drop-down.model";
 export namespace Components {
     interface CoreBtn {
         "color": string;
+        "size": string;
+        "type": string;
     }
     interface CoreCard {
         "header": string;
@@ -61,6 +63,8 @@ declare global {
 declare namespace LocalJSX {
     interface CoreBtn {
         "color"?: string;
+        "size"?: string;
+        "type"?: string;
     }
     interface CoreCard {
         "header"?: string;

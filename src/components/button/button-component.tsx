@@ -1,5 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
-import { colorClassMapper } from '../../utils/utils';
+import { styleTypeClassMapper, colorClassMapper, sizeClassMapper } from '../../utils/utils';
 
 @Component({
     tag: 'core-btn',
@@ -8,10 +8,14 @@ import { colorClassMapper } from '../../utils/utils';
 })
 export class ButtonComponent {
     @Prop() color: string;
+    @Prop() size = '';
+    @Prop() type = '';
+
     private btnClass: string;
 
     componentWillLoad() {
-        this.btnClass = `btn btn-${colorClassMapper[this.color]}`;
+        const type = styleTypeClassMapper[this.type] || '';
+        this.btnClass = `btn btn-${type}${colorClassMapper[this.color]} btn-${sizeClassMapper[this.size]}`;
     }
 
     render() {
