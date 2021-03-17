@@ -7,7 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface CoreBtn {
-        "type": string;
+        "color": string;
     }
     interface CoreCard {
         "header": string;
@@ -45,7 +45,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface CoreBtn {
-        "type"?: string;
+        "color"?: string;
     }
     interface CoreCard {
         "header"?: string;

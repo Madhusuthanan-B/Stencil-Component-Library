@@ -6,22 +6,22 @@ import { Component, h, Prop } from '@stencil/core';
     shadow: true
 })
 export class ButtonComponent {
-    @Prop() type: string;
+    @Prop() color: string;
     private btnClass: string;
-    private btnTypeClassMapper = {
-        'primary': 'btn-primary',
-        'secondary': 'btn-secondary',
-        'error': 'btn-danger',
-        'warn': 'btn-warning',
-        'info': 'btn-info'
+    private colorClassMapper = {
+        'primary': 'primary',
+        'secondary': 'secondary',
+        'error': 'danger',
+        'warn': 'warning',
+        'info': 'info'
     };
 
     componentWillLoad() {
-        this.btnClass = this.btnTypeClassMapper[this.type];
+        this.btnClass = `btn btn-${this.colorClassMapper[this.color]}`;
     }
 
     render() {
-        return <button type="button" class={'btn ' + this.btnClass}>
+        return <button type="button" class={this.btnClass}>
             <slot></slot>
         </button>;
     }
