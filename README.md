@@ -77,4 +77,4 @@ The first step for all three of these strategies is to [publish to NPM](https://
 ### To publish the package locally from this library
 - Install yalc globally `npm install yalc -g`
 - From the root, do `npm install`
-- To publish the package in local yalc store, run `npm run publish`
+- To publish the package in local yalc store, run `npm run yalc`
